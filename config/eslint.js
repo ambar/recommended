@@ -72,7 +72,8 @@ module.exports = {
     // recommended
     'no-use-before-define': ['error', 'nofunc'],
     'no-var': 'error',
-    'prefer-const': 'error',
+    'prefer-const': ['error', {destructuring: 'all'}],
+    'no-console': 'error',
 
     // react
     'react/display-name': 'off',

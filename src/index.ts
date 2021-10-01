@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as fs from 'fs'
 import * as path from 'path'
 import mri from 'mri'
@@ -143,9 +144,13 @@ export const run = async (argv: string[]) => {
     console.log(usage)
     return
   }
+
   const {fix, cache} = args
   let files = args._
-  if (!files.length) {
+  if (files.length) {
+    files = await globFiles(files)
+    log(`globFiles:filtered (${files.length})`)
+  } else {
     // pattern[] is slower
     const uniqueExts = [...new Set([...jsExts, ...tsExts, ...prettierExts])]
     files = await globFiles(
@@ -153,12 +158,17 @@ export const run = async (argv: string[]) => {
     )
     log(`globFiles (${files.length})`)
   }
+  if (!files.length) {
+    log(`No matching files`)
+    return
+  }
+
   try {
     const prettierFiles = files.filter((x) =>
       prettierExts.some((e) => x.endsWith(e))
     )
     await runPrettier(prettierFiles, {fix})
-    const hasTS = await globFiles('**/tsconfig.json')
+    const hasTS = (await globFiles('**/tsconfig.json')).length > 0
     const esLintFiles = files.filter((x) =>
       (hasTS ? tsExts.concat(jsExts) : jsExts).some((e) => x.endsWith(e))
     )
