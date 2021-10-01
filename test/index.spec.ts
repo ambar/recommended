@@ -1,5 +1,8 @@
 import {run} from '../src/index'
 
+// CI may be slow
+jest.setTimeout(10 * 1000)
+
 const cwd = process.cwd()
 beforeEach(() => {
   process.chdir(cwd)
