@@ -3,19 +3,12 @@ import * as path from 'path'
 import mri from 'mri'
 import debug from 'debug'
 import globby from 'globby'
+import prettier from 'prettier'
 import findCacheDir from 'find-cache-dir'
 import execa, {ExecaError} from 'execa'
 
 const NAME = 'recommended'
 const log = debug(NAME)
-function safeGet<T>(fn: () => T, defaultValue: T): T {
-  try {
-    return fn()
-  } catch (_) {
-    return defaultValue
-  }
-}
-const hasPrettier = safeGet<boolean>(() => !!require.resolve('prettier'), false)
 const defaultIgnore = [
   '**/node_modules/**',
   '**/.git',
@@ -80,10 +73,7 @@ const toArgv = (obj: Record<string, unknown>) => {
 const runPrettier = async (files: string[], {fix = false}) => {
   const name = 'prettier'
   log('runPrettier:resolveConfigFile:start')
-  // eslint-disable-next-line
-  const configFile = await require('prettier')
-    .resolveConfigFile()
-    .catch(() => null)
+  const configFile = await prettier.resolveConfigFile().catch(() => null)
   const argv = toArgv({
     config: configFile || require.resolve('../config/prettier'),
     write: fix || undefined,
@@ -164,12 +154,10 @@ export const run = async (argv: string[]) => {
     log(`globFiles (${files.length})`)
   }
   try {
-    if (hasPrettier) {
-      const prettierFiles = files.filter((x) =>
-        prettierExts.some((e) => x.endsWith(e))
-      )
-      await runPrettier(prettierFiles, {fix})
-    }
+    const prettierFiles = files.filter((x) =>
+      prettierExts.some((e) => x.endsWith(e))
+    )
+    await runPrettier(prettierFiles, {fix})
     const hasTS = await globFiles('**/tsconfig.json')
     const esLintFiles = files.filter((x) =>
       (hasTS ? tsExts.concat(jsExts) : jsExts).some((e) => x.endsWith(e))
