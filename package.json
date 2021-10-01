@@ -1,8 +1,46 @@
 {
   "name": "recommended",
   "version": "0.0.0",
-  "description": "My awesome project",
+  "description": "Run Prettier/ESLint with `recommended` configs",
   "license": "MIT",
-  "main": "index.js",
-  "scripts": {}
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "bin": "cli.js",
+  "files": [
+    "config",
+    "dist",
+    "cli.js"
+  ],
+  "scripts": {
+    "prepare": "yarn build",
+    "lint": "DEBUG=recommended node cli.js",
+    "dev": "yarn build --watch",
+    "prebuild": "rm -rf dist",
+    "build": "esbuild $npm_package_source --outfile=$npm_package_main --platform=node --target=node12 --format=cjs"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "execa": "^5.1.1",
+    "find-cache-dir": "^3.3.2",
+    "globby": "^11",
+    "mri": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/eslint": "^7.28.0",
+    "@types/find-cache-dir": "^3.2.1",
+    "@types/node": "^16.9.6",
+    "@types/prettier": "^2.3.2",
+    "@types/react": "^17.0.24",
+    "esbuild": "^0.13.1",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
+  }
 }
