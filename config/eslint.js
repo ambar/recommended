@@ -1,6 +1,5 @@
 const globby = require('globby')
 
-const hasPrettier = safeGet(() => !!require.resolve('prettier'), false)
 const projects = globFiles(['**/tsconfig.json', '**/jsconfig.json'])
 const tsProjects = projects.filter((x) => x.endsWith('tsconfig.json'))
 
@@ -39,7 +38,7 @@ module.exports = {
             'plugin:@typescript-eslint/recommended',
             'plugin:@typescript-eslint/recommended-requiring-type-checking',
             // NOTE: To override other configs, Prettier must be the last extension
-            hasPrettier && 'prettier',
+            'prettier',
           ].filter(Boolean),
           rules: {
             'no-unused-vars': 'off',
@@ -64,8 +63,8 @@ module.exports = {
     // https://www.npmjs.com/package/eslint-plugin-import
     'plugin:import/recommended',
     // NOTE: To override other configs, Prettier must be the last extension
-    // https://github.com/prettier/eslint-plugin-prettier
-    hasPrettier && 'prettier',
+    // https://github.com/prettier/eslint-config-prettier
+    'prettier',
   ].filter(Boolean),
 
   rules: {
