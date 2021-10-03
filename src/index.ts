@@ -6,7 +6,9 @@ import debug from 'debug'
 import globby from 'globby'
 import prettier from 'prettier'
 import findCacheDir from 'find-cache-dir'
+import kleur from 'kleur'
 import execa, {ExecaError} from 'execa'
+import {runInit} from './runInit'
 
 const NAME = 'recommended'
 const log = debug(NAME)
@@ -18,8 +20,11 @@ const defaultIgnore = [
   '**/package-lock.json',
   '**/CHANGELOG.md',
 ]
+const resolveRoot = path.resolve.bind(null, __dirname, '..')
 const globFiles = (patterns: string | string[]) =>
   globby(patterns, {gitignore: true, ignore: defaultIgnore})
+const hasFile = async (file: string) =>
+  Boolean(await fs.promises.stat(file).catch(() => null))
 
 // like cosmiconfig but do not read file
 const resolveConfigFile = async (
@@ -30,7 +35,7 @@ const resolveConfigFile = async (
   }: {packageProp: string; searchPlaces: string[]}
 ) => {
   for (const file of searchPlaces) {
-    if (await fs.promises.stat(file).catch(() => false)) {
+    if (await hasFile(file)) {
       if (file === 'package.json') {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const pkg = require(path.resolve(file)) as Record<string, unknown>
@@ -75,8 +80,9 @@ const runPrettier = async (files: string[], {fix = false}) => {
   const name = 'prettier'
   log('runPrettier:resolveConfigFile:start')
   const configFile = await prettier.resolveConfigFile().catch(() => null)
+
   const argv = toArgv({
-    config: configFile || require.resolve('../config/prettier'),
+    config: configFile || resolveRoot('config/prettier.js'),
     write: fix || undefined,
     check: !fix || undefined,
   })
@@ -103,7 +109,7 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
     ],
   })
   const argv = toArgv({
-    config: configFile || require.resolve('../config/eslint'),
+    config: configFile || resolveRoot('config/eslint.js'),
     fix: fix || undefined,
     cache,
     'cache-location': path.join(findCacheDir({name: NAME}) as string, '/'),
@@ -125,27 +131,39 @@ Usage: recommended [options] [files]
 Options:
   --fix\t\tautomatically fix problems
   --cache\ttry to use disk cache to speed up - default: true
+  --init\tsetup editor config files
   -h, --help\toutput usage information
 
 Examples:
-  # lint all files in the current project
+  ${kleur.gray('# lint all files in the current project')}
   recommended
-  # lint specified files
+  ${kleur.gray('# lint specified files')}
   recommended src/index.ts
 `
 
 export const run = async (argv: string[]) => {
-  const args = mri<{cache: boolean; fix: boolean; help: boolean}>(argv, {
+  const args = mri<{
+    cache: boolean
+    fix: boolean
+    init: boolean
+    help: boolean
+  }>(argv, {
     boolean: ['fix', 'cache', 'help'],
     alias: {h: 'help'},
   })
   log('main', args)
-  if (args.help) {
+
+  const {fix, cache, help, init} = args
+  if (help) {
     console.log(usage)
     return
   }
 
-  const {fix, cache} = args
+  if (init) {
+    await runInit()
+    return
+  }
+
   let files = args._
   if (files.length) {
     files = await globFiles(files)
