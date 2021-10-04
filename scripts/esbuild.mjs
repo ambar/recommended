@@ -35,7 +35,7 @@ const main = async () => {
     throw new Error(esbuild.formatMessages(errors))
   } else {
     execSync(
-      `echo 'build finished: ' && wc -c ${pkg.main} && gzip -c ${pkg.main} | wc -c`,
+      `echo 'build finished:' && wc -c ${pkg.main} && gzip -c ${pkg.main} | wc -c`,
       {
         stdio: 'inherit',
       }

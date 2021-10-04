@@ -177,7 +177,7 @@ export const run = async (argv: string[]) => {
     files = await globFiles(
       `**/*.{,${uniqueExts.map((x) => x.replace(/^\./, '')).join(',')}}`
     )
-    log(`globFiles (${files.length})`)
+    log(`globFiles (${files.length})`, files)
   }
   if (!files.length) {
     log(`No matching files`)
