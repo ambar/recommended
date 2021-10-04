@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/ambar/recommended/compare/v0.0.2...v0.0.3) (2021-10-04)
+
+
+### Features
+
+* add `--init` command ([6eed552](https://github.com/ambar/recommended/commit/6eed552443c150c70067d9e8a163934519c6df17))
+* prefer local bin/plugins ([a4f19e1](https://github.com/ambar/recommended/commit/a4f19e1ae968962f315f9e8dcdadcb46ac7621bd))
+
 ### [0.0.2](https://github.com/ambar/recommended/compare/v0.0.1...v0.0.2) (2021-10-01)
 
 
