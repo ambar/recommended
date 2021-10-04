@@ -92,6 +92,7 @@ const runPrettier = async (files: string[], {fix = false}) => {
   await execa(name, [...argv, ...files], {
     stdio: 'inherit',
     preferLocal: true,
+    localDir: resolveRoot('node_modules'),
   }).finally(() => {
     log('runPrettier:complete')
   })
@@ -113,6 +114,7 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
     fix: fix || undefined,
     cache,
     'cache-location': path.join(findCacheDir({name: NAME}) as string, '/'),
+    'resolve-plugins-relative-to': resolveRoot('node_modules'),
   })
   log('runESLint:resolveConfigFile:ok', argv.join(' '))
 
@@ -120,6 +122,7 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
   await execa(name, [...argv, ...files], {
     stdio: 'inherit',
     preferLocal: true,
+    localDir: resolveRoot('node_modules'),
   }).finally(() => {
     log('runESLint:complete')
   })
@@ -167,7 +170,7 @@ export const run = async (argv: string[]) => {
   let files = args._
   if (files.length) {
     files = await globFiles(files)
-    log(`globFiles:filtered (${files.length})`)
+    log(`globFiles:filtered (${files.length})`, files)
   } else {
     // pattern[] is slower
     const uniqueExts = [...new Set([...jsExts, ...tsExts, ...prettierExts])]
