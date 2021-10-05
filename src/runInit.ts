@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import prompts from 'prompts'
 import kleur from 'kleur'
+import prettier from 'prettier'
 import {merge} from './jsonc'
 
 const fsp = fs.promises
@@ -114,14 +115,20 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
 
     {
       const settings = {
-        'prettier.prettierPath': relativeCwd(resolveRoot('node_modules')),
-        'eslint.nodePath': relativeCwd(resolveRoot('node_modules')),
+        // TODO: it's not stable, it may be better to use alias
+        'prettier.prettierPath': relativeCwd(
+          path.dirname(require.resolve('prettier/package.json'))
+        ),
+        'eslint.nodePath': relativeCwd(resolveRoot()),
+        'eslint.options': {
+          resolvePluginsRelativeTo: relativeCwd(resolveRoot()),
+        },
       }
       const file = `.vscode/settings.json`
       const text = (await hasFile(file))
         ? merge(String(await fsp.readFile(file)), settings)
-        : JSON.stringify(settings, null, '  ')
-      await fsp.writeFile(file, text)
+        : JSON.stringify(settings)
+      await fsp.writeFile(file, prettier.format(text, {parser: 'json'}))
       console.info(kleur.green('success'), `Added ${file}`)
     }
 
@@ -134,8 +141,8 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
         ? merge(String(await fsp.readFile(file)), extensions, (dest, src) =>
             Array.isArray(dest) ? [...new Set(dest.concat(src))] : src
           )
-        : JSON.stringify(extensions, null, '  ')
-      await fsp.writeFile(file, text)
+        : JSON.stringify(extensions)
+      await fsp.writeFile(file, prettier.format(text, {parser: 'json'}))
       console.info(kleur.green('success'), `Added ${file}`)
     }
   }

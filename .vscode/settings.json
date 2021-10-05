@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
-  "prettier.prettierPath": "node_modules",
+  "prettier.prettierPath": "node_modules/prettier",
   "eslint.nodePath": "node_modules"
 }
