@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/ambar/recommended/compare/v0.0.3...v0.0.4) (2021-10-05)
+
+
+### Bug Fixes
+
+* include dot files ([d59ad48](https://github.com/ambar/recommended/commit/d59ad48542a769c395a38c04cd70d8c1eea933a7))
+* update editor configs ([bd385d7](https://github.com/ambar/recommended/commit/bd385d72472c23f6dedf02a8a607fd9426092a3f))
+
 ### [0.0.3](https://github.com/ambar/recommended/compare/v0.0.2...v0.0.3) (2021-10-04)
 
 
