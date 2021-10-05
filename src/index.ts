@@ -22,7 +22,7 @@ const defaultIgnore = [
 ]
 const resolveRoot = path.resolve.bind(null, __dirname, '..')
 const globFiles = (patterns: string | string[]) =>
-  globby(patterns, {gitignore: true, ignore: defaultIgnore})
+  globby(patterns, {dot: true, gitignore: true, ignore: defaultIgnore})
 const hasFile = async (file: string) =>
   Boolean(await fs.promises.stat(file).catch(() => null))
 
