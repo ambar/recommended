@@ -21,6 +21,10 @@ beforeEach(() => {
   execSync(`rm -f .*.js .vscode/*.json`)
 })
 
+test('throw', async () => {
+  await expect(runInit()).rejects.toThrow()
+})
+
 test('add none', async () => {
   await runInit({
     answers: {

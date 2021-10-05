@@ -79,6 +79,7 @@ const toArgv = (obj: Record<string, unknown>) => {
 const runPrettier = async (files: string[], {fix = false}) => {
   const name = 'prettier'
   log('runPrettier:resolveConfigFile:start')
+  // https://prettier.io/docs/en/configuration.html
   const configFile = await prettier.resolveConfigFile().catch(() => null)
 
   const argv = toArgv({

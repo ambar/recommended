@@ -1,0 +1,15 @@
+{
+  "name": "resolve-config-pkg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "prettier": {
+    "semi": true
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-var": "off"
+    }
+  }
+}

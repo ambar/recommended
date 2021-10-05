@@ -36,7 +36,10 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
   const eslintrc = '.eslintrc.js'
   const prettierrc = '.prettierrc.js'
   // test only, will be removed after building
-  if (process.env.NODE_ENV === 'test' && answers) {
+  if (process.env.NODE_ENV === 'test') {
+    if (!answers) {
+      throw new Error('Required answers')
+    }
     prompts.inject([answers.filesToAdd])
   }
   const {filesToAdd} = (await prompts(

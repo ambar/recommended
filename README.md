@@ -1,6 +1,6 @@
 # `recommended`
 
-[![Coverage Status](https://coveralls.io/repos/github/ambar/recommended/badge.svg?branch=master)](https://coveralls.io/github/ambar/recommended?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ambar/recommended/badge.svg?branch=main)](https://coveralls.io/github/ambar/recommended?branch=main)
 [![npm version](https://badgen.net/npm/v/recommended)](https://www.npmjs.com/package/recommended)
 
 Run Prettier/ESLint with _**recommended**_ configs.
