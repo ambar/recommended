@@ -7,8 +7,9 @@
     "dist"
   ],
   "scripts": {
+    "prepack": "yarn build",
     "prebuild": "rm -rf dist",
-    "build": "esbuild . --outfile=$npm_package_main --bundle --platform=node --external:doctrine --external:minimatch --external:estraverse --external:semver --external:prop-types",
+    "build": "node setup && esbuild . --outfile=$npm_package_main --bundle --platform=node --external:doctrine --external:minimatch --external:estraverse --external:semver --external:prop-types",
     "build:inspect": "yarn build --sourcemap && source-map-explorer $npm_package_main"
   },
   "dependencies": {
