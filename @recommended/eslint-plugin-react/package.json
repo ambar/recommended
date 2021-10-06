@@ -1,6 +1,6 @@
 {
   "name": "@recommended/eslint-plugin-react",
-  "version": "7.26.100",
+  "version": "7.26.2-0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

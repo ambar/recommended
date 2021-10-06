@@ -1,6 +1,11 @@
 const fs = require('fs')
+const semver = require('semver')
 const pkg = require('./package.json')
 const dep = require('eslint-plugin-import/package.json')
+
+if (dep.name === pkg.name) {
+  throw new Error('Do not link to the bundled package')
+}
 
 const dynamic = [
   // dynamic required
@@ -20,7 +25,7 @@ const externals = [
   'debug',
 ]
 
-pkg.scripts.build = `esbuild . --outfile=$npm_package_main --bundle --platform=node ${dynamic
+pkg.scripts.build = `node setup && esbuild . --outfile=$npm_package_main --bundle --platform=node ${dynamic
   .concat(externals)
   .map((x) => `--external:${x}`)
   .join(' ')}`
@@ -35,7 +40,12 @@ externals.forEach((x) => {
   }
 })
 
-pkg.version = dep.version + '00'
+// NOTE: increase this number before publish
+const ver = 1
+pkg.version = [...Array(ver).keys()].reduce(
+  (acc) => semver.inc(acc, 'prerelease'),
+  dep.version
+)
 Object.assign(pkg.peerDependencies, dep.peerDependencies)
 
 fs.writeFileSync('./package.json', JSON.stringify(pkg, null, '  ') + '\n')

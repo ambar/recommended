@@ -1,6 +1,6 @@
 {
   "name": "@recommended/eslint-plugin-import",
-  "version": "2.24.200",
+  "version": "2.24.3-0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -9,7 +9,7 @@
   "scripts": {
     "prepack": "yarn build",
     "prebuild": "rm -rf dist",
-    "build": "esbuild . --outfile=$npm_package_main --bundle --platform=node --external:typescript --external:eslint --external:tsconfig-paths --external:doctrine --external:minimatch --external:debug",
+    "build": "node setup && esbuild . --outfile=$npm_package_main --bundle --platform=node --external:typescript --external:eslint --external:tsconfig-paths --external:doctrine --external:minimatch --external:debug",
     "build:inspect": "yarn build --sourcemap && source-map-explorer $npm_package_main"
   },
   "dependencies": {
