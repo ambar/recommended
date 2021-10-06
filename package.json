@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
   "workspaces": [
-    "eslint*"
+    "recommended",
+    "@recommended/*"
   ],
   "devDependencies": {
     "esbuild": "^0.13.4"
