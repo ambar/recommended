@@ -6,6 +6,7 @@
     "@recommended/*"
   ],
   "scripts": {
+    "build": "yarn workspaces run build",
     "test": "jest",
     "lint": "DEBUG=recommended recommended",
     "lint:fix": "DEBUG=recommended recommended --fix"
