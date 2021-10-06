@@ -5,6 +5,10 @@
     "recommended",
     "@recommended/*"
   ],
+  "scripts": {
+    "lint": "DEBUG=recommended recommended",
+    "lint:fix": "DEBUG=recommended recommended --fix"
+  },
   "devDependencies": {
     "esbuild": "^0.13.4"
   }

@@ -1575,6 +1575,16 @@ eslint-plugin-import@^2.24.2:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
+"eslint-plugin-import@npm:@recommended/eslint-plugin-import@^2.24.2":
+  version "2.24.200"
+  resolved "https://registry.yarnpkg.com/@recommended/eslint-plugin-import/-/eslint-plugin-import-2.24.200.tgz#687606605926416b224d6346fb004730397be501"
+  integrity sha512-gAoj8a8cWXZblZs5vJnEJffhUIse+Le5JvvVGmCAwUL0IOhTuRf8EAQLgIzYfd5k1AQ0pF+rxzsscTOoQNMGZw==
+  dependencies:
+    debug "^2.6.9"
+    doctrine "^2.1.0"
+    minimatch "^3.0.4"
+    tsconfig-paths "^3.11.0"
+
 eslint-plugin-react-hooks@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
@@ -1599,6 +1609,17 @@ eslint-plugin-react@^7.26.1:
     resolve "^2.0.0-next.3"
     semver "^6.3.0"
     string.prototype.matchall "^4.0.5"
+
+"eslint-plugin-react@npm:@recommended/eslint-plugin-react@^7.26.1":
+  version "7.26.100"
+  resolved "https://registry.yarnpkg.com/@recommended/eslint-plugin-react/-/eslint-plugin-react-7.26.100.tgz#9f16e32a422282ea20b5a4a79f2c0a873911ff04"
+  integrity sha512-+CWZnU9m6fUZsIiHFXjoQjBCLkbQffDahPRC5VXdT26269kdbq6pzZW3isN5szcbZHYdVsIjNknBifREa4ZYhg==
+  dependencies:
+    doctrine "^2.1.0"
+    estraverse "^5.2.0"
+    minimatch "^3.0.4"
+    prop-types "^15.7.2"
+    semver "^6.3.0"
 
 eslint-scope@^5.1.1:
   version "5.1.1"

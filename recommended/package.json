@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "prepare": "yarn build",
-    "lint": "DEBUG=recommended node cli.js",
     "test": "jest",
     "dev": "yarn build --watch",
     "prebuild": "rm -rf dist",
@@ -33,8 +32,8 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-import": "npm:@recommended/eslint-plugin-import@^2.24.2",
+    "eslint-plugin-react": "npm:@recommended/eslint-plugin-react@^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "execa": "^5.1.1",
     "find-cache-dir": "^3.3.2",
