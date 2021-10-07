@@ -3,5 +3,6 @@ bin
 conf
 lib
 messages
-__bundled__
 .babelrc
+__bundled__
+__rc__

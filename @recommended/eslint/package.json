@@ -1,6 +1,6 @@
 {
   "name": "@recommended/eslint",
-  "version": "7.32.1-0",
+  "version": "7.32.1-1",
   "main": "./lib/api.js",
   "bin": {
     "eslint": "./bin/eslint.js"
@@ -11,7 +11,8 @@
     "conf",
     "lib",
     "messages",
-    "__bundled__"
+    "__bundled__",
+    "__rc__"
   ],
   "license": "MIT",
   "engines": {
@@ -23,18 +24,10 @@
   },
   "dependencies": {
     "doctrine": "^3.0.0",
-    "@eslint/eslintrc": "^0.4.3",
     "ajv": "^6.10.0",
-    "debug": "^4.0.1",
-    "espree": "^7.3.1",
-    "globals": "^13.6.0",
-    "ignore": "^4.0.6",
-    "import-fresh": "^3.0.0",
-    "js-yaml": "^3.13.1",
-    "minimatch": "^3.0.4",
-    "strip-json-comments": "^3.1.0",
     "chalk": "^4.0.0",
     "semver": "^7.2.1",
+    "debug": "^4.0.1",
     "enquirer": "^2.3.5"
   },
   "devDependencies": {
