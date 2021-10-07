@@ -1,0 +1,11 @@
+{
+  "name": "@recommended/prettier-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "ambar/recommended",
+    "directory": "@recommended/prettier-config"
+  }
+}

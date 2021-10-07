@@ -1,0 +1,21 @@
+{
+  "name": "@recommended/eslint-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "ambar/recommended",
+    "directory": "@recommended/eslint-config"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "npm:@recommended/eslint-plugin-import@^2.24.3-1",
+    "eslint-plugin-react": "npm:@recommended/eslint-plugin-react@^7.26.2-1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "globby": "^11"
+  }
+}
