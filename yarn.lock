@@ -1707,16 +1707,17 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz#f65328259305927392c938ed44eb0a5c9b2bd303"
   integrity sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==
 
-"eslint@npm:@recommended/eslint@^7.32.1-1":
-  version "7.32.1-1"
-  resolved "https://registry.yarnpkg.com/@recommended/eslint/-/eslint-7.32.1-1.tgz#098d8ebb628554cc7d740b0fdeb6fd4a37e7845e"
-  integrity sha512-uMlW9KlWQerH7KXMTIqU1OK+ZU4K6cXMWcULrjdr0+r5seq+CiGxBrE6wwPc3pPBt58RCe2JADKBjDCicfopJA==
+"eslint@npm:@recommended/eslint@^7.32.1-2":
+  version "7.32.1-2"
+  resolved "https://registry.yarnpkg.com/@recommended/eslint/-/eslint-7.32.1-2.tgz#c723be1ba1bc099dbb66496e612b1f42b08efffe"
+  integrity sha512-s3t1D+Z0VhcCQf2U7bfrCopHdtLFo1V2ul2fpPv7MWTzmzxCAoV0Ek9oX7CJ0k5vQ5dWXVu4tsFzMhd6/HD4gw==
   dependencies:
     ajv "^6.10.0"
     chalk "^4.0.0"
     debug "^4.0.1"
     doctrine "^3.0.0"
     enquirer "^2.3.5"
+    espree "^7.3.1"
     semver "^7.2.1"
 
 "eslint@npm:eslint@^7.32.0":
