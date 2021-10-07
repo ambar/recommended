@@ -19,8 +19,6 @@ const externals = [
   'tsconfig-paths',
   // used by eslint-plugin-react(@2), eslint(@3)
   'doctrine',
-  // used by eslint-plugin-react(@3), eslint(@3)
-  'minimatch',
   // v3 (should upgrade), used by eslint(@4), resolver-typescript(@4), @typescript-eslint(@4)
   'debug',
 ]
@@ -30,6 +28,7 @@ pkg.scripts.build = `node setup && esbuild . --outfile=$npm_package_main --bundl
   .map((x) => `--external:${x}`)
   .join(' ')}`
 
+Object.assign(pkg, {dependencies: {}, peerDependencies: dep.peerDependencies})
 externals.forEach((x) => {
   if (x in dep.peerDependencies) {
     pkg.peerDependencies[x] = dep.peerDependencies[x]
@@ -41,11 +40,10 @@ externals.forEach((x) => {
 })
 
 // NOTE: increase this number before publish
-const ver = 1
+const ver = 2
 pkg.version = [...Array(ver).keys()].reduce(
   (acc) => semver.inc(acc, 'prerelease'),
   dep.version
 )
-Object.assign(pkg.peerDependencies, dep.peerDependencies)
 
 fs.writeFileSync('./package.json', JSON.stringify(pkg, null, '  ') + '\n')

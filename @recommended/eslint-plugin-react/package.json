@@ -1,6 +1,6 @@
 {
   "name": "@recommended/eslint-plugin-react",
-  "version": "7.26.2-0",
+  "version": "7.26.2-1",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -9,15 +9,13 @@
   "scripts": {
     "prepack": "yarn build",
     "prebuild": "rm -rf dist",
-    "build": "node setup && esbuild . --outfile=$npm_package_main --bundle --platform=node --external:doctrine --external:minimatch --external:estraverse --external:semver --external:prop-types",
+    "build": "node setup && esbuild . --outfile=$npm_package_main --bundle --platform=node --external:doctrine --external:estraverse --external:semver",
     "build:inspect": "yarn build --sourcemap && source-map-explorer $npm_package_main"
   },
   "dependencies": {
     "doctrine": "^2.1.0",
-    "minimatch": "^3.0.4",
     "estraverse": "^5.2.0",
-    "semver": "^6.3.0",
-    "prop-types": "^15.7.2"
+    "semver": "^6.3.0"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7"
