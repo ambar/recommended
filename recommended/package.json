@@ -1,6 +1,6 @@
 {
   "name": "recommended",
-  "version": "0.0.6-2",
+  "version": "0.0.6-3",
   "description": "Run Prettier/ESLint with `recommended` configs",
   "license": "MIT",
   "repository": "ambar/recommended",

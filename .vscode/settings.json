@@ -2,5 +2,8 @@
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
   "prettier.prettierPath": "node_modules/prettier",
-  "eslint.nodePath": "node_modules"
+  "eslint.nodePath": "recommended",
+  "eslint.options": {
+    "resolvePluginsRelativeTo": "@recommended/eslint-config"
+  }
 }

@@ -1,1 +1,3 @@
-module.exports = require('recommended/config/eslint')
+module.exports = {
+  extends: ['@recommended/eslint-config'],
+}

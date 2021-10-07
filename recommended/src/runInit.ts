@@ -14,12 +14,12 @@ const hasFile = async (file: string) =>
 
 const eslintrcText = `
 module.exports = {
-  extends: [require.resolve('recommended/config/eslint')],
+  extends: ['@recommended/eslint-config'],
 }
 `.trimStart()
 
 const prettierrcText = `
-module.exports = require('recommended/config/prettier')
+module.exports = require('@recommended/prettier-config')
 `.trimStart()
 
 if (process.env.NODE_ENV === 'test') {
@@ -124,7 +124,11 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
         ),
         'eslint.nodePath': relativeCwd(resolveRoot()),
         'eslint.options': {
-          resolvePluginsRelativeTo: relativeCwd(resolveRoot()),
+          resolvePluginsRelativeTo: relativeCwd(
+            path.dirname(
+              require.resolve('@recommended/eslint-config/package.json')
+            )
+          ),
         },
       }
       const file = `.vscode/settings.json`

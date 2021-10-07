@@ -83,7 +83,7 @@ const runPrettier = async (files: string[], {fix = false}) => {
   const configFile = await prettier.resolveConfigFile().catch(() => null)
 
   const argv = toArgv({
-    config: configFile || resolveRoot('config/prettier.js'),
+    config: configFile || require.resolve('@recommended/prettier-config'),
     write: fix || undefined,
     check: !fix || undefined,
   })
@@ -111,11 +111,13 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
     ],
   })
   const argv = toArgv({
-    config: configFile || resolveRoot('config/eslint.js'),
+    config: configFile || require.resolve('@recommended/eslint-config'),
     fix: fix || undefined,
     cache,
     'cache-location': path.join(findCacheDir({name: NAME}) as string, '/'),
-    'resolve-plugins-relative-to': resolveRoot('node_modules'),
+    'resolve-plugins-relative-to': path.dirname(
+      require.resolve('@recommended/eslint-config/package.json')
+    ),
   })
   log('runESLint:resolveConfigFile:ok', argv.join(' '))
 
