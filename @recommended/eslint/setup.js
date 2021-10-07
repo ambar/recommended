@@ -13,11 +13,20 @@ if (dep.name === pkg.name) {
   throw new Error('Do not link to the bundled package')
 }
 
+// NOTE: increase this number before publish
+const ver = 3
+pkg.version = [...Array(ver).keys()].reduce(
+  (acc) => semver.inc(acc, 'prerelease'),
+  dep.version
+)
+
 const externals = new Set([
   // shared by plugins
   'doctrine',
   // not using entry point
   'ajv',
+  // dynamic require
+  'espree',
   // lightweight, or zero dependency
   'chalk',
   'semver',
@@ -80,12 +89,6 @@ const main = async () => {
     // reset
     dependencies: {},
   })
-  // NOTE: increase this number before publish
-  const ver = 2
-  pkg.version = [...Array(ver).keys()].reduce(
-    (acc) => semver.inc(acc, 'prerelease'),
-    dep.version
-  )
   externals.forEach((x) => {
     if (dep.peerDependencies && x in dep.peerDependencies) {
       pkg.peerDependencies[x] = dep.peerDependencies[x]

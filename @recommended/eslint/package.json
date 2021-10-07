@@ -1,6 +1,6 @@
 {
   "name": "@recommended/eslint",
-  "version": "7.32.1-1",
+  "version": "7.32.1-2",
   "main": "./lib/api.js",
   "bin": {
     "eslint": "./bin/eslint.js"
@@ -25,6 +25,7 @@
   "dependencies": {
     "doctrine": "^3.0.0",
     "ajv": "^6.10.0",
+    "espree": "^7.3.1",
     "chalk": "^4.0.0",
     "semver": "^7.2.1",
     "debug": "^4.0.1",
