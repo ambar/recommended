@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/ambar/recommended/compare/v0.0.4...v0.0.7) (2021-10-08)
+
+
+### Features
+
+* add config subpackage ([5522ef6](https://github.com/ambar/recommended/commit/5522ef669555cdda336a25f16cc64847c159968f))
+* replace find-cache-dir with escalade ([384d765](https://github.com/ambar/recommended/commit/384d765740f49ae34f7f421d1cb2a48ec92c03e4))
+
 ### [0.0.4](https://github.com/ambar/recommended/compare/v0.0.3...v0.0.4) (2021-10-05)
 
 
