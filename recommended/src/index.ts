@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-import * as fs from 'fs'
-import * as path from 'path'
+import path from 'path'
 import mri from 'mri'
 import debug from 'debug'
 import globby from 'globby'
@@ -9,6 +8,7 @@ import kleur from 'kleur'
 import execa, {ExecaError} from 'execa'
 import {runInit} from './runInit'
 import findCacheDir from './utils/findCacheDir'
+import resolveConfigFile from './utils/resolveConfigFile'
 
 const NAME = 'recommended'
 const log = debug(NAME)
@@ -23,32 +23,6 @@ const defaultIgnore = [
 const resolveRoot = path.resolve.bind(null, __dirname, '..')
 const globFiles = (patterns: string | string[]) =>
   globby(patterns, {dot: true, gitignore: true, ignore: defaultIgnore})
-const hasFile = async (file: string) =>
-  Boolean(await fs.promises.stat(file).catch(() => null))
-
-// like cosmiconfig but do not read file
-const resolveConfigFile = async (
-  packageName: string,
-  {
-    packageProp = packageName,
-    searchPlaces = [],
-  }: {packageProp: string; searchPlaces: string[]}
-) => {
-  for (const file of searchPlaces) {
-    if (await hasFile(file)) {
-      if (file === 'package.json') {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const pkg = require(path.resolve(file)) as Record<string, unknown>
-        if (pkg[packageProp]) {
-          return file
-        }
-      } else {
-        return file
-      }
-    }
-  }
-  return null
-}
 
 const jsExts = ['.js', '.jsx', '.cjs', '.mjs']
 const tsExts = ['.ts', '.tsx']
