@@ -5,10 +5,10 @@ import mri from 'mri'
 import debug from 'debug'
 import globby from 'globby'
 import prettier from 'prettier'
-import findCacheDir from 'find-cache-dir'
 import kleur from 'kleur'
 import execa, {ExecaError} from 'execa'
 import {runInit} from './runInit'
+import findCacheDir from './utils/findCacheDir'
 
 const NAME = 'recommended'
 const log = debug(NAME)
@@ -110,11 +110,12 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
       'package.json',
     ],
   })
+  const cacheDir = cache ? await findCacheDir(NAME) : undefined
   const argv = toArgv({
     config: configFile || require.resolve('@recommended/eslint-config'),
     fix: fix || undefined,
     cache,
-    'cache-location': path.join(findCacheDir({name: NAME}) as string, '/'),
+    'cache-location': cacheDir && path.join(cacheDir, '/'),
     'resolve-plugins-relative-to': path.dirname(
       require.resolve('@recommended/eslint-config/package.json')
     ),
