@@ -21,9 +21,13 @@ Run Prettier/ESLint with _**recommended**_ configs.
 
 ```bash
 # JavaScript only
-npm install --save-dev recommended
+yarn add --dev recommended
 # JavaScript and TypeScript
-npm install --save-dev recommended typescript
+yarn add --dev recommended typescript
+
+# for npm:
+npm i --legacy-peer-deps --save-dev recommended
+npm i --legacy-peer-deps --save-dev recommended typescript
 ```
 
 ## CLI
