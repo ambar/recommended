@@ -3,7 +3,11 @@
   "version": "0.0.7",
   "description": "Run Prettier/ESLint with `recommended` configs",
   "license": "MIT",
-  "repository": "ambar/recommended",
+  "repository": {
+    "type": "git",
+    "url": "ambar/recommended",
+    "directory": "recommended"
+  },
   "source": "src/index.ts",
   "main": "dist/index.js",
   "bin": "cli.js",
