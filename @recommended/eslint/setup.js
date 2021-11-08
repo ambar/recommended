@@ -52,7 +52,7 @@ const copyPkg = async (name, {dir, files}) => {
   await Promise.all(
     files.map(async (x) => {
       const dest = path.resolve(__dirname, dir, x)
-      await fsp.rmdir(dest, {recursive: true, force: true})
+      await fsp.rmdir(dest, {recursive: true, force: true}).catch(() => {})
     })
   )
   const filesToCopy = await globby(files, {cwd: from})
@@ -86,6 +86,7 @@ const main = async () => {
     files: files.concat(bundleDir, rcDir),
     license: dep.license,
     engines: dep.engines,
+    exports: dep.exports,
     // reset
     dependencies: {},
   })
