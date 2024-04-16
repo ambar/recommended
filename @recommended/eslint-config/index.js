@@ -1,18 +1,21 @@
-const globby = require('globby')
+import globby from 'globby'
+import js from '@eslint/js'
 
 const projects = globFiles(['**/tsconfig.json', '**/jsconfig.json'])
 const tsProjects = projects.filter((x) => x.endsWith('tsconfig.json'))
 
 /**
- * @type {import('eslint').Linter.BaseConfig}
+ * @type {import('eslint').Linter.FlatConfig}
  */
-module.exports = {
+const myConfig = {
   // https://eslint.org/docs/user-guide/configuring#specifying-parser-options
-  parserOptions: {
-    ecmaVersion: 2019,
+  languageOptions: {
+    ecmaVersion: 2022,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
     },
   },
 
@@ -115,3 +118,10 @@ function globFiles(pattern) {
     ignore: ['**/node_modules/**', '**/.git'],
   })
 }
+
+export default [
+  js.configs.recommended,
+  {
+    ...myConfig,
+  },
+]
