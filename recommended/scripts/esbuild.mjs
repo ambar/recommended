@@ -19,16 +19,6 @@ const main = async () => {
     define: {
       'process.env.NODE_ENV': `'production'`,
     },
-    watch: process.argv.includes('--watch')
-      ? {
-          onRebuild(err) {
-            console.info('[watch] build finished')
-            if (err && err.errors) {
-              console.error(esbuild.formatMessages(err.errors))
-            }
-          },
-        }
-      : false,
   })
 
   if (errors.length) {

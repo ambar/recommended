@@ -13,43 +13,32 @@
     "cli.js"
   ],
   "scripts": {
-    "prepare": "yarn build",
-    "test": "jest",
-    "dev": "yarn build --watch",
     "prebuild": "rm -rf dist",
-    "build": "node scripts/esbuild.mjs"
+    "build": "node scripts/esbuild.mjs",
+    "test": "jest"
   },
   "dependencies": {
     "@recommended/eslint-config": "^1.0.0",
     "@recommended/prettier-config": "^1.0.0",
-    "debug": "^4.3.2",
-    "escalade": "^3.1.1",
-    "eslint": "npm:@recommended/eslint@^7.32.1-2",
+    "debug": "^4.3.4",
+    "escalade": "^3.1.2",
+    "eslint": "^9.0.0",
     "execa": "^5.1.1",
     "globby": "^11",
     "jsonc-parser": "^3.0.0",
     "kleur": "^3",
     "mri": "^1.2.0",
-    "prettier": "^2.4.1",
+    "prettier": "^3.2.5",
     "prompts": "^2.4.1"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.7",
-    "@types/eslint": "^7.28.0",
-    "@types/find-cache-dir": "^3.2.1",
-    "@types/node": "^16.9.6",
-    "@types/prettier": "^2.3.2",
-    "@types/prompts": "^2.0.14",
-    "@types/react": "^17.0.24",
-    "typescript": "^4.4.3"
+    "typescript": "^5.4.5"
   },
   "keywords": [
     "lint",
     "style",
     "eslint",
     "prettier",
-    "typescript",
-    "standard",
-    "xo"
+    "typescript"
   ]
 }

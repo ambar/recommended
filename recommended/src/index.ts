@@ -90,9 +90,9 @@ const runESLint = async (files: string[], {fix = false, cache = true}) => {
     fix: fix || undefined,
     cache,
     'cache-location': cacheDir && path.join(cacheDir, '/'),
-    'resolve-plugins-relative-to': path.dirname(
-      require.resolve('@recommended/eslint-config/package.json')
-    ),
+    // 'resolve-plugins-relative-to': path.dirname(
+    //   require.resolve('@recommended/eslint-config/package.json')
+    // ),
   })
   log('runESLint:resolveConfigFile:ok', argv.join(' '))
 
