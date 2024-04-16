@@ -1011,14 +1011,14 @@ __metadata:
   resolution: "@recommended/eslint-config@workspace:@recommended/eslint-config"
   dependencies:
     "@eslint/js": "npm:^9.0.0"
-    "@typescript-eslint/eslint-plugin": "npm:^7.7.0"
-    "@typescript-eslint/parser": "npm:^7.7.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-import-resolver-typescript: "npm:^3.6.1"
     eslint-plugin-import: "npm:^2.29.1"
     eslint-plugin-react: "npm:^7.34.1"
     eslint-plugin-react-hooks: "npm:^4.6.0"
+    globals: "npm:^15.0.0"
     globby: "npm:^11"
+    typescript-eslint: "npm:^7.7.0"
   languageName: unknown
   linkType: soft
 
@@ -1191,7 +1191,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^7.7.0":
+"@typescript-eslint/eslint-plugin@npm:7.7.0":
   version: 7.7.0
   resolution: "@typescript-eslint/eslint-plugin@npm:7.7.0"
   dependencies:
@@ -1216,7 +1216,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^7.7.0":
+"@typescript-eslint/parser@npm:7.7.0":
   version: 7.7.0
   resolution: "@typescript-eslint/parser@npm:7.7.0"
   dependencies:
@@ -2997,6 +2997,13 @@ __metadata:
   version: 14.0.0
   resolution: "globals@npm:14.0.0"
   checksum: 10c0/b96ff42620c9231ad468d4c58ff42afee7777ee1c963013ff8aabe095a451d0ceeb8dcd8ef4cbd64d2538cef45f787a78ba3a9574f4a634438963e334471302d
+  languageName: node
+  linkType: hard
+
+"globals@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "globals@npm:15.0.0"
+  checksum: 10c0/b93e356a7bd4562d73a9defa95a0ff5e8a0b7726a4e2af16bd8ad019e14cd21d85e0a27b46e7e270d34e25df0bc0f9473ca21b47266c406c0e40973956085777
   languageName: node
   linkType: hard
 
@@ -5630,6 +5637,22 @@ __metadata:
     is-typed-array: "npm:^1.1.13"
     possible-typed-array-names: "npm:^1.0.0"
   checksum: 10c0/74253d7dc488eb28b6b2711cf31f5a9dcefc9c41b0681fd1c178ed0a1681b4468581a3626d39cd4df7aee3d3927ab62be06aa9ca74e5baf81827f61641445b77
+  languageName: node
+  linkType: hard
+
+"typescript-eslint@npm:^7.7.0":
+  version: 7.7.0
+  resolution: "typescript-eslint@npm:7.7.0"
+  dependencies:
+    "@typescript-eslint/eslint-plugin": "npm:7.7.0"
+    "@typescript-eslint/parser": "npm:7.7.0"
+    "@typescript-eslint/utils": "npm:7.7.0"
+  peerDependencies:
+    eslint: ^8.56.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/ab2ac348518f889823e7dfffb01cf5e48bfa9a80171a7ebc581ba1fcb53ffe82d6582f05532e82e7772e1fd73a74cc5315fa2cadaaeb793c74e21355b4ab2e3f
   languageName: node
   linkType: hard
 

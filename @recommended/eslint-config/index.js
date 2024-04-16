@@ -1,5 +1,14 @@
-import globby from 'globby'
 import js from '@eslint/js'
+import globals from 'globals'
+import globby from 'globby'
+// FIXME: Cannot find module
+// import reactRecommended from 'eslint-plugin-react/configs/recommended'
+// import jsxRuntimeRecommended from 'eslint-plugin-react/configs/jsx-runtime'
+import reactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginImport from 'eslint-plugin-import'
+// import importRecommended from 'eslint-plugin-import/config/recommended'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import tseslint from 'typescript-eslint'
 
 const projects = globFiles(['**/tsconfig.json', '**/jsconfig.json'])
 const tsProjects = projects.filter((x) => x.endsWith('tsconfig.json'))
@@ -17,58 +26,11 @@ const myConfig = {
         jsx: true,
       },
     },
+    globals: {
+      ...globals.browser,
+      ...globals.node,
+    },
   },
-
-  // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-    jest: true,
-  },
-
-  overrides: tsProjects.length
-    ? [
-        {
-          files: ['**/*.ts', '**/*.tsx'],
-          parser: '@typescript-eslint/parser',
-          plugins: ['@typescript-eslint'],
-          parserOptions: {
-            project: tsProjects,
-          },
-          extends: [
-            // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
-            'plugin:@typescript-eslint/recommended',
-            'plugin:@typescript-eslint/recommended-requiring-type-checking',
-            // NOTE: To override other configs, Prettier must be the last extension
-            'prettier',
-          ].filter(Boolean),
-          rules: {
-            'no-unused-vars': 'off',
-            '@typescript-eslint/no-unused-vars': 'error',
-            'no-use-before-define': 'off',
-            '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
-            '@typescript-eslint/explicit-module-boundary-types': 'off',
-          },
-        },
-      ]
-    : [],
-
-  // recommended for all, :D
-  extends: [
-    // https://eslint.org/docs/rules/
-    'eslint:recommended',
-    // https://www.npmjs.com/package/eslint-plugin-react
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    // https://www.npmjs.com/package/eslint-plugin-react-hooks
-    'plugin:react-hooks/recommended',
-    // https://www.npmjs.com/package/eslint-plugin-import
-    'plugin:import/recommended',
-    // NOTE: To override other configs, Prettier must be the last extension
-    // https://github.com/prettier/eslint-config-prettier
-    'prettier',
-  ].filter(Boolean),
 
   rules: {
     // recommended
@@ -119,9 +81,48 @@ function globFiles(pattern) {
   })
 }
 
-export default [
+const shared = [
+  //
   js.configs.recommended,
-  {
-    ...myConfig,
-  },
+  // https://www.npmjs.com/package/eslint-plugin-react
+  // reactRecommended,
+  // jsxRuntimeRecommended,
+  // https://www.npmjs.com/package/eslint-plugin-react-hooks
+  reactHooks.configs.recommended,
+  // https://www.npmjs.com/package/eslint-plugin-import
+  eslintPluginImport.configs.recommended,
+  // https://github.com/prettier/eslint-config-prettier
+  eslintConfigPrettier,
 ]
+
+console.info(eslintConfigPrettier)
+
+/**
+ * @type {import('eslint').Linter.FlatConfig[]}
+ */
+export default tseslint.config([
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [...shared, ...tseslint.configs.recommended],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: true,
+      },
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
+      'no-use-before-define': 'off',
+      '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+    },
+  },
+  {
+    files: ['**/*.{js,jsx,mjs,cjs}'],
+    extends: [...shared, tseslint.configs.disableTypeChecked],
+  },
+])
