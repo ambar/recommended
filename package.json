@@ -24,6 +24,7 @@
     "es-jest": "^2.1.0",
     "esbuild": "^0.20.2",
     "jest": "^29.7.0",
+    "prettier": "^3.2.5",
     "recommended": "workspace:*"
   },
   "packageManager": "yarn@4.1.1"

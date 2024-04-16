@@ -10,7 +10,7 @@ export default async function resolveConfigFile(
   {
     packageProp = packageName,
     searchPlaces = [],
-  }: {packageProp: string; searchPlaces: string[]}
+  }: {packageProp: string; searchPlaces: string[]},
 ) {
   for (const file of searchPlaces) {
     if (await hasFile(file)) {

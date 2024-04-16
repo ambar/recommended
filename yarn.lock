@@ -5085,6 +5085,7 @@ __metadata:
     es-jest: "npm:^2.1.0"
     esbuild: "npm:^0.20.2"
     jest: "npm:^29.7.0"
+    prettier: "npm:^3.2.5"
     recommended: "workspace:*"
   languageName: unknown
   linkType: soft

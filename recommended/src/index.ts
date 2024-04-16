@@ -60,6 +60,7 @@ const runPrettier = async (files: string[], {fix = false}) => {
     config: configFile || require.resolve('@recommended/prettier-config'),
     write: fix || undefined,
     check: !fix || undefined,
+    'error-on-unmatched-pattern': false,
   })
   log('runPrettier:resolveConfigFile:ok', argv.join(' '))
 
@@ -153,7 +154,7 @@ export const run = async (argv: string[]) => {
     // pattern[] is slower
     const uniqueExts = [...new Set([...jsExts, ...tsExts, ...prettierExts])]
     files = await globFiles(
-      `**/*.{,${uniqueExts.map((x) => x.replace(/^\./, '')).join(',')}}`
+      `**/*.{,${uniqueExts.map((x) => x.replace(/^\./, '')).join(',')}}`,
     )
     log(`globFiles (${files.length})`, files)
   }
@@ -164,12 +165,12 @@ export const run = async (argv: string[]) => {
 
   try {
     const prettierFiles = files.filter((x) =>
-      prettierExts.some((e) => x.endsWith(e))
+      prettierExts.some((e) => x.endsWith(e)),
     )
     await runPrettier(prettierFiles, {fix})
     const hasTS = (await globFiles('**/tsconfig.json')).length > 0
     const esLintFiles = files.filter((x) =>
-      (hasTS ? tsExts.concat(jsExts) : jsExts).some((e) => x.endsWith(e))
+      (hasTS ? tsExts.concat(jsExts) : jsExts).some((e) => x.endsWith(e)),
     )
     await runESLint(esLintFiles, {fix, cache})
   } catch (e) {

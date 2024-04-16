@@ -28,7 +28,7 @@ const main = async () => {
       `echo 'build finished:' && wc -c ${pkg.main} && gzip -c ${pkg.main} | wc -c`,
       {
         stdio: 'inherit',
-      }
+      },
     )
   }
 }

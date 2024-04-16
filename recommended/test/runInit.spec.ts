@@ -34,7 +34,7 @@ test('add none', async () => {
     },
   })
   expect(
-    mockLog.mock.calls.map((x: string[]) => x.join(' ')).join('\n')
+    mockLog.mock.calls.map((x: string[]) => x.join(' ')).join('\n'),
   ).toMatchInlineSnapshot(`""`)
 })
 
@@ -125,14 +125,14 @@ test('add vscode - merge', async () => {
     settingsFile,
     JSON.stringify({
       'editor.formatOnSave': true,
-    })
+    }),
   )
   fs.writeFileSync(
     extensionsFile,
     JSON.stringify({
       unwantedRecommendations: [],
       recommendations: ['dbaeumer.vscode-eslint', 'wmaurer.change-case'],
-    })
+    }),
   )
   await runInit({
     answers: {

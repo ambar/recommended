@@ -44,9 +44,9 @@ test('merge with concat', () => {
       JSON.parse(
         merge(JSON.stringify(d), s, (dest, src) => {
           return Array.isArray(dest) ? dest.concat(src) : src
-        })
-      )
-    )
+        }),
+      ),
+    ),
   ).toMatchInlineSnapshot(`
     Array [
       Object {

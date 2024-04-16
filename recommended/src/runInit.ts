@@ -62,7 +62,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
         ],
       },
     ],
-    {onCancel: () => process.exit()}
+    {onCancel: () => process.exit()},
   )) as PromptResult
 
   if (filesToAdd.includes('rc')) {
@@ -79,7 +79,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
       if (!rmEslintrc) {
         shouldAddEslintrc = false
         console.info(
-          `Skip adding ${eslintrc}, it's recommended to add by yourself:\n`
+          `Skip adding ${eslintrc}, it's recommended to add by yourself:\n`,
         )
         console.info(kleur.gray(eslintrcText))
       }
@@ -102,7 +102,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
       if (!rmPrettierrc) {
         shouldAddPrettierrc = false
         console.info(
-          `Skip adding ${prettierrc}, it's recommended to add by yourself:\n`
+          `Skip adding ${prettierrc}, it's recommended to add by yourself:\n`,
         )
         console.info(kleur.gray(prettierrcText))
       }
@@ -120,14 +120,14 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
       const settings = {
         // TODO: it's not stable, it may be better to use alias
         'prettier.prettierPath': relativeCwd(
-          path.dirname(require.resolve('prettier/package.json'))
+          path.dirname(require.resolve('prettier/package.json')),
         ),
         'eslint.nodePath': relativeCwd(resolveRoot()),
         'eslint.options': {
           resolvePluginsRelativeTo: relativeCwd(
             path.dirname(
-              require.resolve('@recommended/eslint-config/package.json')
-            )
+              require.resolve('@recommended/eslint-config/package.json'),
+            ),
           ),
         },
       }
@@ -146,7 +146,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
       const file = `.vscode/extensions.json`
       const text = (await hasFile(file))
         ? merge(String(await fsp.readFile(file)), extensions, (dest, src) =>
-            Array.isArray(dest) ? [...new Set(dest.concat(src))] : src
+            Array.isArray(dest) ? [...new Set(dest.concat(src))] : src,
           )
         : JSON.stringify(extensions)
       await fsp.writeFile(file, prettier.format(text, {parser: 'json'}))

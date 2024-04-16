@@ -18,7 +18,7 @@ export const merge = (
   text: string,
   source: Record<string, unknown>,
   replacer = defaultReplacer,
-  formattingOptions = defaultFormattingOptions
+  formattingOptions = defaultFormattingOptions,
 ) => {
   const errors: JSONC.ParseError[] = []
   const json = JSONC.parse(text, errors) as typeof source
@@ -30,7 +30,7 @@ export const merge = (
   return Object.entries(source).reduce((acc, [k, v]) => {
     return JSONC.applyEdits(
       acc,
-      JSONC.modify(acc, [k], replacer(json[k], v), {formattingOptions})
+      JSONC.modify(acc, [k], replacer(json[k], v), {formattingOptions}),
     )
   }, text)
 }
