@@ -1,4 +1,4 @@
-import JSONC from 'jsonc-parser'
+import * as JSONC from 'jsonc-parser'
 
 const defaultReplacer = (dest: unknown, src: unknown) => {
   return src

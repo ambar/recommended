@@ -135,7 +135,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
       const text = (await hasFile(file))
         ? merge(String(await fsp.readFile(file)), settings)
         : JSON.stringify(settings)
-      await fsp.writeFile(file, prettier.format(text, {parser: 'json'}))
+      await fsp.writeFile(file, await prettier.format(text, {parser: 'json'}))
       console.info(kleur.green('success'), `Added ${file}`)
     }
 
@@ -149,7 +149,7 @@ export const runInit = async ({answers}: {answers?: PromptResult} = {}) => {
             Array.isArray(dest) ? [...new Set(dest.concat(src))] : src,
           )
         : JSON.stringify(extensions)
-      await fsp.writeFile(file, prettier.format(text, {parser: 'json'}))
+      await fsp.writeFile(file, await prettier.format(text, {parser: 'json'}))
       console.info(kleur.green('success'), `Added ${file}`)
     }
   }
