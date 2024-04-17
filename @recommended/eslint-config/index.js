@@ -44,7 +44,7 @@ const myConfig = {
     'react/prop-types': 'off',
 
     // react hooks
-    'react-hooks/exhaustive-deps': 'error',
+    // 'react-hooks/exhaustive-deps': 'error',
   },
 
   settings: {
@@ -82,25 +82,21 @@ function globFiles(pattern) {
 }
 
 const shared = [
+  myConfig,
   //
   js.configs.recommended,
   // https://www.npmjs.com/package/eslint-plugin-react
   // reactRecommended,
   // jsxRuntimeRecommended,
   // https://www.npmjs.com/package/eslint-plugin-react-hooks
-  reactHooks.configs.recommended,
+  // reactHooks.configs.recommended,
   // https://www.npmjs.com/package/eslint-plugin-import
-  eslintPluginImport.configs.recommended,
+  // eslintPluginImport.configs.recommended,
   // https://github.com/prettier/eslint-config-prettier
   eslintConfigPrettier,
 ]
 
-console.info(eslintConfigPrettier)
-
-/**
- * @type {import('eslint').Linter.FlatConfig[]}
- */
-export default tseslint.config([
+const finalConfig = tseslint.config(
   {
     files: ['**/*.{ts,tsx}'],
     extends: [...shared, ...tseslint.configs.recommended],
@@ -125,4 +121,6 @@ export default tseslint.config([
     files: ['**/*.{js,jsx,mjs,cjs}'],
     extends: [...shared, tseslint.configs.disableTypeChecked],
   },
-])
+)
+
+export default finalConfig
