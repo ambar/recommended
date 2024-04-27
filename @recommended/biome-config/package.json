@@ -1,0 +1,6 @@
+{
+  "name": "@recommended/biome-config",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "biome.json"
+}

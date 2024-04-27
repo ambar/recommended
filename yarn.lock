@@ -1006,6 +1006,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@recommended/biome-config@workspace:@recommended/biome-config":
+  version: 0.0.0-use.local
+  resolution: "@recommended/biome-config@workspace:@recommended/biome-config"
+  languageName: unknown
+  linkType: soft
+
 "@recommended/eslint-config@npm:^1.0.0, @recommended/eslint-config@workspace:@recommended/eslint-config":
   version: 0.0.0-use.local
   resolution: "@recommended/eslint-config@workspace:@recommended/eslint-config"
@@ -5085,9 +5091,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"root-workspace-0b6124@workspace:.":
+"root@workspace:.":
   version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
+  resolution: "root@workspace:."
   dependencies:
     "@types/jest": "npm:^29.5.12"
     es-jest: "npm:^2.1.0"
