@@ -16,7 +16,7 @@
     "formatter": {
       "quoteStyle": "single",
       "semicolons": "asNeeded",
-      "arrowParentheses": "asNeeded",
+      "arrowParentheses": "always",
       "trailingComma": "all",
       "bracketSpacing": false
     }
