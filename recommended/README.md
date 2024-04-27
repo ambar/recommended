@@ -26,8 +26,8 @@ yarn add --dev recommended
 yarn add --dev recommended typescript
 
 # for npm:
-npm i --legacy-peer-deps --save-dev recommended
-npm i --legacy-peer-deps --save-dev recommended typescript
+npm i -D recommended
+npm i -D recommended typescript
 ```
 
 ## CLI
