@@ -22,8 +22,8 @@ Update the `package.json`:
 {
   "scripts": {
     "lint": "biome check .",
-    "lint:fix": "biome check --apply .",
-    "lint:fix-unsafe": "biome check --apply-unsafe ."
+    "lint:fix": "biome check --write .",
+    "lint:fix-unsafe": "biome check --write -unsafe ."
   }
 }
 ```
