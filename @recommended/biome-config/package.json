@@ -2,5 +2,13 @@
   "name": "@recommended/biome-config",
   "type": "module",
   "version": "1.0.0",
-  "main": "biome.json"
+  "main": "biome.json",
+  "scripts": {
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:fix-unsafe": "biome check --write -unsafe ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
 }
